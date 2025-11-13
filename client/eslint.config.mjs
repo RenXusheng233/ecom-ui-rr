@@ -11,7 +11,13 @@ const eslintConfig = defineConfig([
   eslintPluginPrettierRecommended,
   {
     rules: {
-      'prettier/prettier': ['error', { singleQuote: true, semi: false }],
+      'prettier/prettier': [
+        'error',
+        {
+          singleQuote: true,
+          semi: false,
+        },
+      ],
     },
   },
   // Override default ignores of eslint-config-next.

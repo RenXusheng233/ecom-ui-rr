@@ -1,6 +1,13 @@
-import { ProductType } from '@/types'
+import { CATEGORY, ProductType } from '@/types'
 import Categories from './Categories'
 import ProductCard from './ProductCard'
+import Link from 'next/link'
+import Filter from './Filter'
+
+export enum FromPage {
+  Home = 'home',
+  Products = 'products',
+}
 
 // NOTE: TEMPORARY
 const products: ProductType[] = [
@@ -114,15 +121,28 @@ const products: ProductType[] = [
   },
 ]
 
-const ProductList = () => {
+const ProductList = ({
+  category,
+  from,
+}: {
+  category?: string
+  from: FromPage
+}) => {
   return (
     <div className="w-full">
       <Categories />
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-12">
+      {from === FromPage.Products && <Filter />}
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-12">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
+      <Link
+        href={category ? `/products?${CATEGORY}=${category}` : '/products'}
+        className="flex justify-end mt-4 underline text-sm text-gray-500"
+      >
+        View all products
+      </Link>
     </div>
   )
 }

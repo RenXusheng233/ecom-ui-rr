@@ -3,6 +3,7 @@ import { ReactElement } from 'react'
 export const ALL = 'all'
 export const CATEGORY = 'category'
 export const SORT = 'sort'
+export const STEP = 'step'
 
 export type Category = {
   name: string

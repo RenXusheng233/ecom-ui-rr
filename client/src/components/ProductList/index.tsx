@@ -1,7 +1,7 @@
 import { CATEGORY, ProductType } from '@/types'
+import Link from 'next/link'
 import Categories from './Categories'
 import ProductCard from './ProductCard'
-import Link from 'next/link'
 import Filter from './Filter'
 
 export enum FromPage {

@@ -1,4 +1,6 @@
 import { ReactElement } from 'react'
+import z from 'zod'
+import { shippingFormSchema } from './schemas'
 
 export const ALL = 'all'
 export const CATEGORY = 'category'
@@ -27,3 +29,5 @@ export type CartItemType = ProductType & {
   selectedSize: string
   selectedColor: string
 }
+
+export type ShippingFormInputs = z.infer<typeof shippingFormSchema>

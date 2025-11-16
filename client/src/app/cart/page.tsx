@@ -1,7 +1,7 @@
 'use client'
 
-import PaymentForm from '@/components/PaymentForm'
-import ShippingForm from '@/components/ShippingForm'
+import PaymentForm from '@/components/CartForm/PaymentForm'
+import ShippingForm from '@/components/CartForm/ShippingForm'
 import { CartItemType, STEP } from '@/types'
 import { ArrowRight, Trash2 } from 'lucide-react'
 import Image from 'next/image'

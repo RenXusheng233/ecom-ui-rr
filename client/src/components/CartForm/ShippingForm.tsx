@@ -2,23 +2,37 @@ import { shippingFormSchema } from '@/schemas'
 import { ShippingFormInputs } from '@/types'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { ArrowRight } from 'lucide-react'
-import { FieldErrors, useForm, UseFormRegister } from 'react-hook-form'
+import { useRouter } from 'next/navigation'
+import { Dispatch, SetStateAction } from 'react'
+import {
+  FieldErrors,
+  SubmitHandler,
+  useForm,
+  UseFormRegister,
+} from 'react-hook-form'
 
 type TInputForm = {
   keyName: keyof ShippingFormInputs
   placeholder: string
   register: UseFormRegister<ShippingFormInputs>
   errors: FieldErrors<ShippingFormInputs>
+  type?: string
 }
 
-const InputForm = ({ keyName, placeholder, register, errors }: TInputForm) => {
+const InputForm = ({
+  keyName,
+  placeholder,
+  register,
+  errors,
+  type = 'text',
+}: TInputForm) => {
   return (
     <div className="flex flex-col gap-1">
       <label htmlFor={keyName} className="text-xs text-gray-500 font-medium">
         {keyName.charAt(0).toUpperCase() + keyName.slice(1)}
       </label>
       <input
-        type="text"
+        type={type}
         className="border-b border-gray-200 py-2 outline-none text-sm"
         id={keyName}
         placeholder={placeholder}
@@ -31,7 +45,11 @@ const InputForm = ({ keyName, placeholder, register, errors }: TInputForm) => {
   )
 }
 
-const ShippingForm = () => {
+const ShippingForm = ({
+  setShippingForm,
+}: {
+  setShippingForm: Dispatch<SetStateAction<ShippingFormInputs | null>>
+}) => {
   const {
     register,
     handleSubmit,
@@ -39,8 +57,14 @@ const ShippingForm = () => {
   } = useForm<ShippingFormInputs>({
     resolver: zodResolver(shippingFormSchema),
   })
+  const router = useRouter()
 
-  const handleShippingForm = () => {}
+  const handleShippingForm: SubmitHandler<ShippingFormInputs> = (
+    data: ShippingFormInputs,
+  ) => {
+    setShippingForm(data)
+    router.push('/cart?step=3', { scroll: false })
+  }
 
   return (
     <form
@@ -58,6 +82,7 @@ const ShippingForm = () => {
         placeholder="richardren@gmail.com"
         register={register}
         errors={errors}
+        type="email"
       />
       <InputForm
         keyName="phone"

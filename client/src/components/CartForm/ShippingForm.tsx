@@ -48,7 +48,7 @@ const InputForm = ({
 const ShippingForm = ({
   setShippingForm,
 }: {
-  setShippingForm: Dispatch<SetStateAction<ShippingFormInputs | null>>
+  setShippingForm: Dispatch<SetStateAction<ShippingFormInputs | undefined>>
 }) => {
   const {
     register,

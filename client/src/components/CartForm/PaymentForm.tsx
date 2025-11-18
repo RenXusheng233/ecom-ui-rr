@@ -47,7 +47,7 @@ const ShippingForm = () => {
   })
 
   const handlePaymentForm: SubmitHandler<PaymentFormInputs> = () => {
-    // TODO
+    // TODO: payment
   }
 
   return (

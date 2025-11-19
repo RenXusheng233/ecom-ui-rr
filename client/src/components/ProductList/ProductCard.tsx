@@ -44,7 +44,6 @@ const ProductCard = ({ product }: { product: ProductType }) => {
   return (
     <div className="shadow-lg rounded-lg overflow-hidden">
       {/* IMAGE */}
-      {/* TODO: PRODUCT DETAIL PAGE */}
       <Link href={`products/${id}`}>
         <div className="relative aspect-2/3">
           <Image

@@ -47,7 +47,8 @@ const ShippingForm = () => {
   })
 
   const handlePaymentForm: SubmitHandler<PaymentFormInputs> = () => {
-    // TODO: payment
+    // TODO: Buy these items
+    console.log('buy these items')
   }
 
   return (

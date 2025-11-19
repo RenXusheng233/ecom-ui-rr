@@ -6,6 +6,8 @@ export const ALL = 'all'
 export const CATEGORY = 'category'
 export const SORT = 'sort'
 export const STEP = 'step'
+export const SIZE = 'size'
+export const COLOR = 'color'
 
 export type Category = {
   name: string

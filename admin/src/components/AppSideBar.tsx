@@ -6,7 +6,7 @@ import {
   Search,
   Settings,
   User2,
-} from "lucide-react"
+} from 'lucide-react'
 import {
   Sidebar,
   SidebarContent,
@@ -18,41 +18,41 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "./ui/sidebar"
-import Link from "next/link"
-import Image from "next/image"
+} from './ui/sidebar'
+import Link from 'next/link'
+import Image from 'next/image'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "./ui/dropdown-menu"
+} from './ui/dropdown-menu'
 
 // Menu items.
 const items = [
   {
-    title: "Home",
-    url: "/",
+    title: 'Home',
+    url: '/',
     icon: Home,
   },
   {
-    title: "Inbox",
-    url: "#",
+    title: 'Inbox',
+    url: '#',
     icon: Inbox,
   },
   {
-    title: "Calendar",
-    url: "#",
+    title: 'Calendar',
+    url: '#',
     icon: Calendar,
   },
   {
-    title: "Search",
-    url: "#",
+    title: 'Search',
+    url: '#',
     icon: Search,
   },
   {
-    title: "Settings",
-    url: "#",
+    title: 'Settings',
+    url: '#',
     icon: Settings,
   },
 ]

@@ -81,7 +81,7 @@ const renderHeader = () => (
               width={16}
               height={16}
               loading="eager"
-              className="rounded-full w-auto"
+              className="rounded-full"
             />
             <span>RR Dev</span>
           </Link>

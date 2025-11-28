@@ -4,6 +4,8 @@ import {
   Calendar,
   ChevronDown,
   ChevronUp,
+  Contact,
+  CreditCard,
   Home,
   Inbox,
   Plus,
@@ -11,6 +13,7 @@ import {
   Search,
   Settings,
   User2,
+  UserCog,
 } from 'lucide-react'
 import {
   Sidebar,
@@ -65,6 +68,21 @@ const items = [
     title: 'Settings',
     url: '#',
     icon: Settings,
+  },
+  {
+    title: 'Payments',
+    url: '/payments',
+    icon: CreditCard,
+  },
+  {
+    title: 'Users',
+    url: '/users',
+    icon: UserCog,
+  },
+  {
+    title: 'Richard',
+    url: '/users/richard',
+    icon: Contact,
   },
 ]
 

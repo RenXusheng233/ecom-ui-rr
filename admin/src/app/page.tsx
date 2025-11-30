@@ -3,7 +3,7 @@ import AppBarChart from '@/components/AppBarChart'
 import AppPieChart from '@/components/AppPieChart'
 import CardList, {
   LATEST_TRANSACTIONS,
-  POPULAR_CONTENT_TITLE,
+  POPULAR_PRODUCTS,
 } from '@/components/CardList'
 import TodoList from '@/components/TodoList'
 
@@ -26,7 +26,7 @@ const HomePage = () => {
         <AppAreaChart />
       </div>
       <div className="bg-primary-foreground p-4 rounded-lg">
-        <CardList title={POPULAR_CONTENT_TITLE} />
+        <CardList title={POPULAR_PRODUCTS} />
       </div>
     </div>
   )

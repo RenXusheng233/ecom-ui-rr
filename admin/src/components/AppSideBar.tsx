@@ -4,7 +4,6 @@ import {
   Calendar,
   ChevronDown,
   ChevronUp,
-  Contact,
   CreditCard,
   Home,
   Inbox,
@@ -12,6 +11,7 @@ import {
   Projector,
   Search,
   Settings,
+  ShoppingBasket,
   User2,
   UserCog,
 } from 'lucide-react'
@@ -70,19 +70,19 @@ const items = [
     icon: Settings,
   },
   {
-    title: 'Payments',
-    url: '/payments',
-    icon: CreditCard,
-  },
-  {
     title: 'Users',
     url: '/users',
     icon: UserCog,
   },
   {
-    title: 'Richard',
-    url: '/users/richard',
-    icon: Contact,
+    title: 'Products',
+    url: '/products',
+    icon: ShoppingBasket,
+  },
+  {
+    title: 'Payments',
+    url: '/payments',
+    icon: CreditCard,
   },
 ]
 

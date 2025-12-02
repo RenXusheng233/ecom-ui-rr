@@ -19,17 +19,10 @@ import {
   FormMessage,
 } from './ui/form'
 import { Input } from './ui/input'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from './ui/select'
 import { Button } from './ui/button'
 
 const formSchema = z.object({
-  username: z
+  fullName: z
     .string()
     .min(2, 'Username must be at least 2 characters!')
     .max(50, 'Username must be less than 50 characters!'),
@@ -38,26 +31,26 @@ const formSchema = z.object({
     .string()
     .length(11, 'Phone number must be 11 digits')
     .regex(/^\d+$/, 'Phone number must contain only numbers!'),
-  location: z.string().min(1, 'Location is required!'),
-  role: z.enum(['admin', 'user']),
+  address: z.string().min(1, 'Location is required!'),
+  city: z.string().min(1, 'City is required!'),
 })
 
 const EditUser = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: 'Richard Ren',
+      fullName: 'Richard Ren',
       email: 'RichardRen@gmail.com',
       phone: '188 8888 7777',
-      location: 'Abc Dddd, RR',
-      role: 'admin',
+      address: '169 Main St',
+      city: 'Yan Tai',
     },
   })
 
   const { control } = form
 
   const renderFormInputField = (
-    name: 'username' | 'email' | 'phone' | 'location',
+    name: 'fullName' | 'email' | 'phone' | 'address' | 'city',
     description: string,
   ) => (
     <FormField
@@ -65,7 +58,7 @@ const EditUser = () => {
       name={name}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>Email</FormLabel>
+          <FormLabel>{name.charAt(0).toUpperCase() + name.slice(1)}</FormLabel>
           <FormControl>
             <Input {...field} />
           </FormControl>
@@ -83,43 +76,14 @@ const EditUser = () => {
         <SheetDescription asChild>
           <Form {...form}>
             <form className="space-y-8">
-              {renderFormInputField(
-                'username',
-                'This is your public display name.',
-              )}
+              {renderFormInputField('fullName', 'Enter user full name')}
               {renderFormInputField('email', 'Only admin can see your email.')}
               {renderFormInputField(
                 'phone',
-                'Only admin can see your phone number.',
+                'Only admin can see your phone number (optional).',
               )}
-              {renderFormInputField(
-                'location',
-                'This is your public location.',
-              )}
-              <FormField
-                control={control}
-                name="role"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Role</FormLabel>
-                    <FormControl>
-                      <Select {...field}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Role" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="admin">Admin</SelectItem>
-                          <SelectItem value="user">User</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </FormControl>
-                    <FormDescription>
-                      Only verified users can be admin.
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+              {renderFormInputField('address', 'Enter your adress (optional).')}
+              {renderFormInputField('city', 'Enter your city (optional).')}
               <Button type="submit">Submit</Button>
             </form>
           </Form>

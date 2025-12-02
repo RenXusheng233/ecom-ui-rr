@@ -14,17 +14,17 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { Checkbox } from '@/components/ui/checkbox'
 import Link from 'next/link'
+import Image from 'next/image'
 
-export type Payment = {
+export type User = {
   id: string
-  amount: number
+  avatar: string
   fullName: string
   email: string
-  userId: string
-  status: 'pending' | 'success' | 'failed'
+  status: 'active' | 'inactive'
 }
 
-export const columns: ColumnDef<Payment>[] = [
+export const columns: ColumnDef<User>[] = [
   {
     id: 'select',
     header: ({ table }) => (
@@ -46,6 +46,26 @@ export const columns: ColumnDef<Payment>[] = [
     ),
   },
   {
+    accessorKey: 'avatar',
+    header: 'Avatar',
+    cell: ({ row }) => {
+      const user = row.original
+
+      return (
+        <div className="w-9 h-9 relative">
+          <Image
+            src={user.avatar}
+            alt={user.fullName}
+            fill
+            sizes="auto"
+            loading="eager"
+            className="rounded object-cover"
+          />
+        </div>
+      )
+    },
+  },
+  {
     accessorKey: 'fullName',
     header: 'User',
   },
@@ -64,19 +84,6 @@ export const columns: ColumnDef<Payment>[] = [
     },
   },
   {
-    accessorKey: 'amount',
-    header: 'Amount',
-    cell: ({ row }) => {
-      const amount = parseFloat(row.getValue('amount'))
-      const formatted = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-      }).format(amount)
-
-      return <div className="font-medium">{formatted}</div>
-    },
-  },
-  {
     accessorKey: 'status',
     header: 'Status',
     cell: ({ row }) => {
@@ -85,9 +92,8 @@ export const columns: ColumnDef<Payment>[] = [
         <div
           className={cn(
             `p-1 rounded-md w-max text-xs`,
-            status === 'pending' && 'bg-yellow-500/40',
-            status === 'success' && 'bg-green-500/40',
-            status === 'failed' && 'bg-red-500/40',
+            status === 'active' && 'bg-green-500/40',
+            status === 'inactive' && 'bg-red-500/40',
           )}
         >
           {status}
@@ -98,7 +104,7 @@ export const columns: ColumnDef<Payment>[] = [
   {
     id: 'actions',
     cell: ({ row }) => {
-      const payment = row.original
+      const user = row.original
 
       return (
         <DropdownMenu>
@@ -111,15 +117,14 @@ export const columns: ColumnDef<Payment>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
+              onClick={() => navigator.clipboard.writeText(user.id)}
             >
-              Copy Payment ID
+              Copy User ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <Link href={`/users/${payment.userId}`}>View Customer</Link>
+              <Link href={`/users/${user.id}`}>View Customer</Link>
             </DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )

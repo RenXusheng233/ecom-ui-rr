@@ -16,7 +16,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 export type Product = {
-  id: number
+  id: number | string
   name: string
   shortDescription: string
   description: string

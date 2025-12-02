@@ -2,18 +2,16 @@ import Link from 'next/link'
 import Image from 'next/image'
 import {
   Calendar,
-  ChevronDown,
   ChevronUp,
-  CreditCard,
   Home,
   Inbox,
   Plus,
-  Projector,
   Search,
   Settings,
+  Shirt,
   ShoppingBasket,
+  User,
   User2,
-  UserCog,
 } from 'lucide-react'
 import {
   Sidebar,
@@ -28,9 +26,6 @@ import {
   SidebarMenuBadge,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarMenuSub,
-  SidebarMenuSubButton,
-  SidebarMenuSubItem,
   SidebarSeparator,
 } from './ui/sidebar'
 import {
@@ -39,8 +34,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from './ui/dropdown-menu'
-import { Collapsible, CollapsibleTrigger } from './ui/collapsible'
-import { CollapsibleContent } from '@radix-ui/react-collapsible'
+import { Sheet, SheetTrigger } from './ui/sheet'
+import AddOrder from './AddOrder'
+import AddUser from './AddUser'
+import AddCategory from './AddCategory'
+import AddProduct from './AddProduct'
 
 // Menu items.
 const items = [
@@ -68,21 +66,6 @@ const items = [
     title: 'Settings',
     url: '#',
     icon: Settings,
-  },
-  {
-    title: 'Users',
-    url: '/users',
-    icon: UserCog,
-  },
-  {
-    title: 'Products',
-    url: '/products',
-    icon: ShoppingBasket,
-  },
-  {
-    title: 'Payments',
-    url: '/payments',
-    icon: CreditCard,
   },
 ]
 
@@ -131,107 +114,122 @@ const renderApplicationGroup = () => (
   </SidebarGroup>
 )
 
-// Projects
-const renderProjectsGroup = () => (
+// Products
+const renderProductsGroup = () => (
   <SidebarGroup>
-    <SidebarGroupLabel>Projects</SidebarGroupLabel>
+    <SidebarGroupLabel>Products</SidebarGroupLabel>
     <SidebarGroupAction>
-      <Plus /> <span className="sr-only">Add Project</span>
+      <Plus /> <span className="sr-only">Add Product</span>
     </SidebarGroupAction>
     <SidebarGroupContent>
       <SidebarMenu>
         <SidebarMenuItem>
           <SidebarMenuButton asChild>
-            <Link href="#">
-              <Projector />
-              See All Projects
+            <Link href="/products">
+              <Shirt />
+              See All Products
             </Link>
           </SidebarMenuButton>
         </SidebarMenuItem>
       </SidebarMenu>
       <SidebarMenu>
         <SidebarMenuItem>
-          <SidebarMenuButton asChild>
-            <Link href="#">
-              <Plus />
-              Add Project
-            </Link>
-          </SidebarMenuButton>
+          <Sheet>
+            <SheetTrigger asChild>
+              <SidebarMenuButton asChild>
+                <Link href="#">
+                  <Plus />
+                  Add Product
+                </Link>
+              </SidebarMenuButton>
+            </SheetTrigger>
+            <AddProduct />
+          </Sheet>
+        </SidebarMenuItem>
+        <SidebarMenuItem>
+          <Sheet>
+            <SheetTrigger asChild>
+              <SidebarMenuButton asChild>
+                <Link href="#">
+                  <Plus />
+                  Add Category
+                </Link>
+              </SidebarMenuButton>
+            </SheetTrigger>
+            <AddCategory />
+          </Sheet>
         </SidebarMenuItem>
       </SidebarMenu>
     </SidebarGroupContent>
   </SidebarGroup>
 )
 
-const renderCollapsibleGroup = () => (
-  <Collapsible defaultOpen>
-    <SidebarGroup>
-      <SidebarGroupLabel asChild>
-        <CollapsibleTrigger>
-          Collapsible Group
-          <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
-        </CollapsibleTrigger>
-      </SidebarGroupLabel>
-      <CollapsibleContent>
-        <SidebarGroupContent>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <Link href="#">
-                  <Projector />
-                  See All Projects
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <Link href="#">
-                  <Plus />
-                  Add Project
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarGroupContent>
-      </CollapsibleContent>
-    </SidebarGroup>
-  </Collapsible>
-)
-
-const renderNestedGroup = () => (
+const renderUsersGroup = () => (
   <SidebarGroup>
-    <SidebarGroupLabel>Nested Items</SidebarGroupLabel>
+    <SidebarGroupLabel>Users</SidebarGroupLabel>
+    <SidebarGroupAction>
+      <Plus /> <span className="sr-only">Add User</span>
+    </SidebarGroupAction>
     <SidebarGroupContent>
       <SidebarMenu>
         <SidebarMenuItem>
           <SidebarMenuButton asChild>
-            <Link href="#">
-              <Projector />
-              See All Projects
+            <Link href="/users">
+              <User />
+              See All Users
             </Link>
           </SidebarMenuButton>
-          <SidebarMenuSub>
-            <SidebarMenuSubItem>
-              <SidebarMenuSubButton asChild>
+        </SidebarMenuItem>
+      </SidebarMenu>
+      <SidebarMenu>
+        <SidebarMenuItem>
+          <Sheet>
+            <SheetTrigger asChild>
+              <SidebarMenuButton asChild>
                 <Link href="#">
                   <Plus />
-                  Add Project
+                  Add User
                 </Link>
-              </SidebarMenuSubButton>
-            </SidebarMenuSubItem>
-          </SidebarMenuSub>
-          <SidebarMenuSub>
-            <SidebarMenuSubItem>
-              <SidebarMenuSubButton asChild>
+              </SidebarMenuButton>
+            </SheetTrigger>
+            <AddUser />
+          </Sheet>
+        </SidebarMenuItem>
+      </SidebarMenu>
+    </SidebarGroupContent>
+  </SidebarGroup>
+)
+
+const renderOrdersGroup = () => (
+  <SidebarGroup>
+    <SidebarGroupLabel>Orders / Payments</SidebarGroupLabel>
+    <SidebarGroupAction>
+      <Plus /> <span className="sr-only">Add Order</span>
+    </SidebarGroupAction>
+    <SidebarGroupContent>
+      <SidebarMenu>
+        <SidebarMenuItem>
+          <SidebarMenuButton asChild>
+            <Link href="/payments">
+              <ShoppingBasket />
+              See All Transactions
+            </Link>
+          </SidebarMenuButton>
+        </SidebarMenuItem>
+      </SidebarMenu>
+      <SidebarMenu>
+        <SidebarMenuItem>
+          <Sheet>
+            <SheetTrigger asChild>
+              <SidebarMenuButton asChild>
                 <Link href="#">
                   <Plus />
-                  Add Category
+                  Add Order
                 </Link>
-              </SidebarMenuSubButton>
-            </SidebarMenuSubItem>
-          </SidebarMenuSub>
+              </SidebarMenuButton>
+            </SheetTrigger>
+            <AddOrder />
+          </Sheet>
         </SidebarMenuItem>
       </SidebarMenu>
     </SidebarGroupContent>
@@ -274,9 +272,9 @@ const AppSideBar = () => {
       <SidebarSeparator />
       <SidebarContent>
         {renderApplicationGroup()}
-        {renderProjectsGroup()}
-        {renderCollapsibleGroup()}
-        {renderNestedGroup()}
+        {renderProductsGroup()}
+        {renderUsersGroup()}
+        {renderOrdersGroup()}
       </SidebarContent>
       {renderFooter()}
     </Sidebar>

@@ -35,15 +35,15 @@ const formSchema = z.object({
   city: z.string().min(1, 'City is required!'),
 })
 
-const EditUser = () => {
+const AddUser = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      fullName: 'Richard Ren',
-      email: 'RichardRen@gmail.com',
-      phone: '188 8888 7777',
-      address: '169 Main St',
-      city: 'Yan Tai',
+      fullName: '',
+      email: '',
+      phone: '',
+      address: '',
+      city: '',
     },
   })
 
@@ -72,7 +72,7 @@ const EditUser = () => {
   return (
     <SheetContent>
       <SheetHeader>
-        <SheetTitle className="mb-4">Edit User</SheetTitle>
+        <SheetTitle className="mb-4">Add User</SheetTitle>
         <SheetDescription asChild>
           <Form {...form}>
             <form className="space-y-8">
@@ -93,4 +93,4 @@ const EditUser = () => {
   )
 }
 
-export default EditUser
+export default AddUser
